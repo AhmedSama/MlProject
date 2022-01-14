@@ -1,5 +1,10 @@
 from PIL import Image
 import os
+from pathlib import Path
+from os import join
+
+absPath = Path(__file__).parent
+
 
 def isOnlyWhiteImage(rgb_list_img:list) -> bool:
     for rgb in rgb_list_img:
@@ -45,18 +50,18 @@ def detectTestImageWithDataImages(img,listOfImages):
     # return min(avg_)
 
 def StartDetect(testImage):
-    test1 = make_rgb_list_from_image(f'./images/test/{testImage}')
+    test1 = make_rgb_list_from_image(join(absPath,"/images/test/",testImage))
     if test1 == []:
         return "white"
 
     listOfSmileImages = []
-    for image in os.listdir("./images/data/smile_images"):
-        li = make_rgb_list_from_image("./images/data/smile_images/"+image)
+    for image in os.listdir(join(absPath,"/images/data/smile_images")):
+        li = make_rgb_list_from_image(join(absPath,"/images/data/smile_images/",image))
         listOfSmileImages.append(li)
 
     listOfSadImages = []
-    for image in os.listdir("./images/data/sad_images"):
-        li = make_rgb_list_from_image("./images/data/sad_images/"+image)
+    for image in os.listdir(join(absPath,"/images/data/sad_images")):
+        li = make_rgb_list_from_image(join(absPath,"/images/data/sad_images/",image))
         listOfSadImages.append(li)
 
     val1 = detectTestImageWithDataImages(test1,listOfSmileImages)

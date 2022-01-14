@@ -18,7 +18,7 @@ def index():
 @app.route("/api/detect",methods = ["POST"])
 def detect():
     # take only the base64 string
-    data = request.get_json()["data"].split(";")[1].split(",")[1]
+    data = request.get_json()["data"].split(";")[-1].split(",")[-1]
     data = data.encode()
     image_64_decode = base64.decodestring(data)
     name = 'rand'+str(randint(1000,100000))+".png"

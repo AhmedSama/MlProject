@@ -128,10 +128,28 @@ canvas.addEventListener("mousemove",(event)=>{
     getMousePosition(event)
     Draw()
 })
-canvas.addEventListener("mouseup",(event)=>{
+canvas.addEventListener("mouseup",()=>{
     CanDraw = false
     context.beginPath()
 })
+
+// touch events for phones
+function HandleStart(event){
+    CanDraw = true
+    getMousePosition(event)
+    Draw()
+}
+function HandleMove(event){
+    getMousePosition(event)
+    Draw()
+}
+function HandleEnd(){
+    CanDraw = false
+    context.beginPath()
+}
+canvas.addEventListener("touchstart",HandleStart,false)
+canvas.addEventListener("touchmove",HandleMove,false)
+canvas.addEventListener("touchend",HandleEnd,false)
 
 const DrawBackground = ()=>{
     context.beginPath()

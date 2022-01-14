@@ -1,10 +1,11 @@
-import os
+from os.path import join
 from flask import Flask, render_template, request,jsonify
 import detectImage
 from random import randint
 import base64
+from os import path
 
-
+absPath = path.dirname(path.realpath(__file__))
 
 app = Flask(__name__)
 
@@ -22,8 +23,9 @@ def detect():
     data = data.encode()
     image_64_decode = base64.decodebytes(data)
     name = 'rand'+str(randint(1000,100000))+".png"
-    image_result = open("./images/test/"+name, 'wb') 
+    image_result = open(join(absPath,"images/test/",name), 'wb') 
     image_result.write(image_64_decode)
+    image_result.close()
     if detectImage.StartDetect(name) == "happy":
         print("happy")
         return jsonify({"face":"happy"})

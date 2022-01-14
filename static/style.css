@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;400;500;600;700;800;900&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+:root{
+    --main-font : 'Ubuntu', sans-serif;
+    --secondary-font : 'Raleway', sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--main-font);
+}
+
+
+.draw{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #caccff;
+    flex-direction: column;
+}
+.draw h1{
+    margin-bottom: 20px;
+}
+#start{
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+    font-size: 15px;
+    border-radius: 5px;
+    background-color: #0000ff;
+    color: #ffffff;
+    margin-top: 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: 0.3s ease;
+    font-family: var(--secondary-font);
+}
+
+.btn{
+    outline: none;
+    border: none;
+    padding: 15px 25px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #0000ff;
+    color: #ffffff;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.btn:hover{
+    background-color: #2626be;
+    outline: 7px solid #ffffff;
+}
+
+
+#my-canvas{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    visibility: hidden;
+}
+#my-canvas.active{
+    visibility: visible;
+}
+
+
+/* pop up style */
+.popup-window{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #5050ff2d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.popup-window.active{
+    display: flex;
+}
+.popup{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    animation: graw 0.5s forwards cubic-bezier(0.83, 0.21, 0.32, 1.65);
+}
+
+.popup .popup-head{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+    animation: opacity-anim 0.5s 0.5s forwards ease;
+}
+.popup .popup-head img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.popup-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    color: #00A3FF;
+}
+.popup-body h1{
+    font-family: var(--secondary-font);
+    font-weight: 900;
+    opacity: 0;
+    animation: opacity-anim 0.5s 0.5s forwards ease;
+}
+.popup-body p{
+    font-family: var(--secondary-font);
+    line-height: 25px;
+    font-weight: 400;
+    opacity: 0;
+    animation: opacity-anim 0.5s 0.5s forwards ease;
+}
+
+.ok-btn{
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #d600b6;
+    color: white;
+    margin-top: 20px;
+    cursor: pointer;
+    z-index: 10000;
+    animation: opacity-anim 0.5s 0.5s forwards ease;
+}
+.ok-btn:hover{
+    background-color: #ff07da;
+}
+
+
+
+@keyframes graw{
+    0%{
+        width: 0;
+        height: 0;
+    }
+    100%{
+        width: 500px;
+        height: 500px;
+    }
+}
+
+@keyframes opacity-anim{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

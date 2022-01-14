@@ -1,0 +1,3 @@
+# machine learning algorathim 
+## to detect simple face image if it is sad or happy
+### work on progress ...

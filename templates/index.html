@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<section class="draw">
+    <h1 style="color: white;" id="result"></h1>
+    <button id="start" class="start-btn">reset</button>
+    <canvas></canvas>
+    <button data-cheack class="btn">Cheack</button>
+</section>
+<div class="popup-window">
+    <div class="popup">
+        <div class="popup-head">
+            <img src="{{url_for('static',filename='images/cute.svg')}}" alt="cute image">
+        </div>
+        <div class="popup-body">
+            <h1></h1>
+            <p>Hi, I am a little robot, you can call me ElgoCode-Robot :) I am still a child robot so do not judge me, hope you like me cuz I do like you :)</p>
+        </div>
+        <button class="ok-btn">OK</button>
+    </div>
+</div>
+
+<canvas id="my-canvas"></canvas>
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

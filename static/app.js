@@ -114,11 +114,16 @@ class Vector2D{
 const mousePosition = new Vector2D()
 
 const getMousePosition = (evt)=>{
+
     const rect = canvas.getBoundingClientRect();
     mousePosition.x = evt.clientX - rect.left,
     mousePosition.y = evt.clientY - rect.top
 }
-
+const getMousePositionTouch = (evt)=>{
+    const rect = canvas.getBoundingClientRect();
+    mousePosition.x = evt.touches[0].clientX - rect.left,
+    mousePosition.y = evt.touches[0].clientY - rect.top
+}
 canvas.addEventListener("mousedown",(event)=>{
     CanDraw = true
     getMousePosition(event)
@@ -136,11 +141,11 @@ canvas.addEventListener("mouseup",()=>{
 // touch events for phones
 function HandleStart(event){
     CanDraw = true
-    getMousePosition(event)
+    getMousePositionTouch(event)
     Draw()
 }
 function HandleMove(event){
-    getMousePosition(event)
+    getMousePositionTouch(event)
     Draw()
 }
 function HandleEnd(){
@@ -165,7 +170,9 @@ const Draw = ()=>{
         context.lineCap = "round"
         context.strokeStyle = "#000"
         context.lineTo(mousePosition.x,mousePosition.y)
-        context.stroke() 
+        context.stroke()
+        context.beginPath()
+        context.moveTo(mousePosition.x,mousePosition.y)
     }
     
 }
@@ -179,9 +186,5 @@ const Start = ()=>{
 document.getElementById("start").addEventListener("click",()=>{
     Start()
 })
-
-
-
-
 
 

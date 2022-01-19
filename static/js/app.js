@@ -92,7 +92,7 @@ function handleWhite(){
     },3000)
 }
 
-document.querySelector(".ok-btn").addEventListener("click",()=>{
+document.querySelector("#ok-btn").addEventListener("click",()=>{
     document.querySelector(".popup-window").classList.remove("active")
 })
 

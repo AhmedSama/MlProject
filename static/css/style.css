@@ -313,7 +313,7 @@ section.explane h1{
         gap: 100px;
     }
 }
-@media (max-width: 400px){
+@media (max-width: 450px){
     .tools{
         width: 350px;
         justify-content: center;

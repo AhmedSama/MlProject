@@ -4,7 +4,69 @@
 <header>
     <a class="btn btn-primary" href="{{url_for('index')}}">App</a>
 </header>
+<section class="explane wrap">
+    <h1>Real Examples of a happy face and a sad face</h1>
+    <div class="grid">
+        <div class="example border border-radius-10">
+            <img src="{{url_for('static',filename = 'images/tutorial/examples/happy.png')}}" alt="">
+        </div>
+        <div class="example border border-radius-10">
+            <img src="{{url_for('static',filename = 'images/tutorial/examples/sad.png')}}" alt="">
+        </div>
+    </div>
+</section>
+<section class="explane wrap mt-100">
+    <h1>And Hear are some rules you have to follow :</h1>
+    <div class="grid">
+        <div class="rule">
+            <div class="rule-head">
+                <div class="icon">
+                    <img src="{{url_for('static',filename='images/tutorial/icons/check.svg')}}" alt="">
+                </div>
+                <p>try to fill the page with the face</p>
+            </div>
+            <div class="example border border-radius-10">
+                <img src="{{url_for('static',filename = 'images/tutorial/rules/right1.png')}}" alt="">
+            </div>
+        </div>
 
+        <div class="rule">
+            <div class="rule-head">
+                <div class="icon">
+                    <img src="{{url_for('static',filename='images/tutorial/icons/wrong.svg')}}" alt="">
+                </div>
+                <p class="wrong">don’t make alot of space</p>
+            </div>
+            <div class="example border border-radius-10">
+                <img src="{{url_for('static',filename = 'images/tutorial/rules/wrong1.png')}}" alt="">
+            </div>
+        </div>
+
+        <div class="rule">
+            <div class="rule-head">
+                <div class="icon">
+                    <img src="{{url_for('static',filename='images/tutorial/icons/check.svg')}}" alt="">
+                </div>
+                <p>draw just a simple face with eyes & mouth</p>
+            </div>
+            <div class="example border border-radius-10">
+                <img src="{{url_for('static',filename = 'images/tutorial/rules/right2.png')}}" alt="">
+            </div>
+        </div>
+
+        <div class="rule">
+            <div class="rule-head">
+                <div class="icon">
+                    <img src="{{url_for('static',filename='images/tutorial/icons/wrong.svg')}}" alt="">
+                </div>
+                <p class="wrong">don’t add any details, it won’t work</p>
+            </div>
+            <div class="example border border-radius-10">
+                <img src="{{url_for('static',filename = 'images/tutorial/rules/wrong2.png')}}" alt="">
+            </div>
+        </div>
+    </div>
+</section>
 {%endblock%}
 
 

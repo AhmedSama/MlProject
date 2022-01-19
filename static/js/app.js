@@ -78,18 +78,11 @@ function sadEvent(){
 }
 
 function handleWhite(){
-    let confettiSettings = { target: 'my-canvas',clock:150,size:1 };
-    let confetti = new ConfettiGenerator(confettiSettings);
-    confetti.render();
     let img = document.querySelector(".popup-head img")
     img.src = "/static/images/cute.svg"
-    document.getElementById("my-canvas").classList.add("active")
     document.querySelector(".popup-window").classList.add("active")
     document.querySelector(".popup-body h1").textContent= "Please Draw something :')"
     document.getElementById("result").innerText = "You Have to draw something :')"
-    setTimeout(()=>{
-        document.getElementById("my-canvas").classList.remove("active")
-    },3000)
 }
 
 document.querySelector("#ok-btn").addEventListener("click",()=>{

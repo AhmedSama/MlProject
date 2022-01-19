@@ -47,41 +47,49 @@ let CanDraw = false
 
 
 function happyEvent(){
-    // let confettiSettings = { target: 'my-canvas',clock:70,size:1.8 };
-    // let confetti = new ConfettiGenerator(confettiSettings);
-    // confetti.render();
-    // let img = document.querySelector(".popup-head img")
-    // img.src = "/static/images/cute.svg"
-    // document.getElementById("my-canvas").classList.add("active")
-    // document.querySelector(".popup-window").classList.add("active")
-    // document.querySelector(".popup-body h1").textContent= "You Draw a HAPPY Face"
+    let confettiSettings = { target: 'my-canvas',clock:150,size:1 };
+    let confetti = new ConfettiGenerator(confettiSettings);
+    confetti.render();
+    let img = document.querySelector(".popup-head img")
+    img.src = "/static/images/cute.svg"
+    document.getElementById("my-canvas").classList.add("active")
+    document.querySelector(".popup-window").classList.add("active")
+    document.querySelector(".popup-body h1").textContent= "You Draw a HAPPY Face"
     document.getElementById("result").innerText = "You Draw a HAPPY Face :)"
     // removing the confetti from the screen
-    // setTimeout(()=>{
-    //     document.getElementById("my-canvas").classList.remove("active")
-    // },6000)
+    setTimeout(()=>{
+        document.getElementById("my-canvas").classList.remove("active")
+    },3000)
 }
 function sadEvent(){
-    // let confettiSettings = { target: 'my-canvas',clock:50,size:1.8,colors:[[50,50,50], [20,20,20]] };
-    // let confetti = new ConfettiGenerator(confettiSettings);
-    // confetti.render();
-    // let img = document.querySelector(".popup-head img")
-    // img.src = "/static/images/sad.svg"
-    // document.getElementById("my-canvas").classList.add("active")
-    // document.querySelector(".popup-window").classList.add("active")
-    // document.querySelector(".popup-body h1").textContent= "You Draw a SAD Face"
+    let confettiSettings = { target: 'my-canvas',clock:150,size:1,colors:[[50,50,50], [20,20,20]] };
+    let confetti = new ConfettiGenerator(confettiSettings);
+    confetti.render();
+    let img = document.querySelector(".popup-head img")
+    img.src = "/static/images/sad.svg"
+    document.getElementById("my-canvas").classList.add("active")
+    document.querySelector(".popup-window").classList.add("active")
+    document.querySelector(".popup-body h1").textContent= "You Draw a SAD Face"
     document.getElementById("result").innerText = "You Draw a SAD Face :("
     // removing the confetti from the screen
-    // setTimeout(()=>{
-    //     document.getElementById("my-canvas").classList.remove("active")
-    // },6000)
+    setTimeout(()=>{
+        document.getElementById("my-canvas").classList.remove("active")
+    },3000)
 }
 
 function handleWhite(){
+    let confettiSettings = { target: 'my-canvas',clock:150,size:1 };
+    let confetti = new ConfettiGenerator(confettiSettings);
+    confetti.render();
+    let img = document.querySelector(".popup-head img")
+    img.src = "/static/images/cute.svg"
     document.getElementById("my-canvas").classList.add("active")
     document.querySelector(".popup-window").classList.add("active")
     document.querySelector(".popup-body h1").textContent= "Please Draw something :')"
     document.getElementById("result").innerText = "You Have to draw something :')"
+    setTimeout(()=>{
+        document.getElementById("my-canvas").classList.remove("active")
+    },3000)
 }
 
 document.querySelector(".ok-btn").addEventListener("click",()=>{

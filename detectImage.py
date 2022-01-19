@@ -55,15 +55,19 @@ def StartDetect(testImage):
         return "white"
 
     listOfSmileImages = []
+    # counter = 0
     for image in os.listdir(join(absPath,"images/data/smile_images")):
         li = make_rgb_list_from_image(join(absPath,"images/data/smile_images/",image))
         listOfSmileImages.append(li)
-
+    #     counter += 1
+    # print(counter)
+    # counter = 0
     listOfSadImages = []
     for image in os.listdir(join(absPath,"images/data/sad_images")):
         li = make_rgb_list_from_image(join(absPath,"images/data/sad_images/",image))
         listOfSadImages.append(li)
-
+    #     counter += 1
+    # print(counter)
     val1 = detectTestImageWithDataImages(test1,listOfSmileImages)
     val2 = detectTestImageWithDataImages(test1,listOfSadImages)
 
@@ -71,9 +75,6 @@ def StartDetect(testImage):
         return "happy"
     if(val1 > val2):
         return "sad"
-
-
-
 
 
 

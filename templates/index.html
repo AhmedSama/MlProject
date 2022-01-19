@@ -1,10 +1,24 @@
 {%extends 'base.html'%}
 
 {%block content%}
+<header>
+    <a data-tutorial class="btn btn-primary" href="{{url_for('tutorial')}}">Tutorial</a>
+</header>
 <section class="draw">
-    <h1 style="color: white;" id="result"></h1>
-    <button id="start" class="start-btn">reset</button>
-    <canvas></canvas>
+    <h1 id="result">Please watch the tutorial first</h1>
+    <div class="tools">
+        <div class="tool active border">
+            <img src="{{url_for('static',filename='images/tools/pen.svg')}}" alt="">
+        </div>
+        <div class="tool border">
+            <img src="{{url_for('static',filename='images/tools/eraser.svg')}}" alt="">
+        </div>
+        <div id="start" data-one-click class="tool border">
+            <img src="{{url_for('static',filename='images/tools/back.svg')}}" alt="">
+        </div>
+    </div>
+    <!-- <button id="start" class="btn">reset</button> -->
+    <canvas class="prevent-scroll border border-radius-5-"></canvas>
     <button data-cheack class="btn">Cheack</button>
 </section>
 <div class="popup-window">

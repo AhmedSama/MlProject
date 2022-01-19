@@ -15,6 +15,9 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route("/tutorial")
+def tutorial():
+    return render_template("tutorial.html")
 
 @app.route("/api/detect",methods = ["POST"])
 def detect():
@@ -39,7 +42,7 @@ def detect():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,host="0.0.0.0")
 
 
 

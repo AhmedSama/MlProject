@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+:root{
+    --main-font : 'Ubuntu', sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--main-font);
+}
+
+body{
+    /* overflow: hidden; */
+    background-color: #FDFDFF;
+}
+
+a{
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* ==================== utility classes ==================== */
+.border{
+    border: 1px solid #D8D8D8;
+}
+
+.border-radius-5{
+    border-radius: 5px;
+}
+
+.border-radius-10{
+    border-radius: 10px;
+}
+.btn{
+    outline: none;
+    border: none;
+    padding: 15px 25px;
+    font-size: 15px;
+    border-radius: 70px;
+    background-color: white;
+    color: #737373;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.178);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.btn:hover{
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.418);
+}
+.btn.btn-primary{
+    background-color: #9997EF;
+    color: #fff;
+    box-shadow: 0px 0px 40px rgba(153, 151, 239, 0.59);
+}
+.btn.btn-primary:hover{
+    box-shadow: 0px 0px 20px rgba(152, 151, 239, 0.89);
+}
+/* ----------------------------- */
+
+header{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    justify-content: flex-end;
+}
+
+.tools{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    /* the width of the canvas on desktop */
+    width: 450px; 
+    margin-bottom: 10px;
+}
+.tool{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    /* to center the image inside */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tool.active{
+    background-color: #303030;
+}
+.tool.active img{
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(6deg) brightness(105%) contrast(99%);
+}
+
+.draw{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+.draw h1{
+    margin-bottom: 20px;
+    color: #717185;
+}
+
+
+.prevent-scroll{
+    touch-action: none;
+}
+
+
+#my-canvas{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    visibility: hidden;
+}
+#my-canvas.active{
+    visibility: visible;
+}
+
+
+/* pop up style */
+.popup-window{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #5050ff2d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.popup-window.active{
+    display: flex;
+}
+.popup{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    animation: graw 0.5s forwards cubic-bezier(0.83, 0.21, 0.32, 1.65);
+}
+
+.popup .popup-head{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+    animation: opacity-anim 0.5s 0.5s forwards ease;
+}
+.popup .popup-head img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.popup-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    color: #00A3FF;
+}
+.popup-body h1{
+    font-family: var(--main-font);
+    font-weight: 900;
+    opacity: 0;
+    animation: opacity-anim 0.5s 0.5s forwards ease;
+}
+.popup-body p{
+    font-family: var(--main-font);
+    line-height: 25px;
+    font-weight: 400;
+    opacity: 0;
+    animation: opacity-anim 0.5s 0.5s forwards ease;
+}
+
+.ok-btn{
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #d600b6;
+    color: white;
+    margin-top: 20px;
+    cursor: pointer;
+    z-index: 10000;
+    animation: opacity-anim 0.5s 0.5s forwards ease;
+}
+.ok-btn:hover{
+    background-color: #ff07da;
+}
+
+
+
+@keyframes graw{
+    0%{
+        width: 0;
+        height: 0;
+    }
+    100%{
+        width: 500px;
+        height: 500px;
+    }
+}
+
+@keyframes opacity-anim{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+
+
+
+
+
+
+

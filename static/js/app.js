@@ -1,7 +1,151 @@
 const canvas = document.querySelector("canvas")
-const context = canvas.getContext("2d")
+const ctx = canvas.getContext("2d")
 const whiteCanvas = canvas.toDataURL("image/png")
 const cheack = document.querySelector("[data-cheack]")
+
+
+
+// ============= Image Proccessing ==============
+
+
+class Color{
+    constructor(r,g,b,a,x,y){
+        this.r = r
+        this.g = g
+        this.b = b
+        this.a = a
+        this.x = x
+        this.y = y
+    }
+    isEqual(color){
+        return this.r === color.r && this.g === color.g && this.b === color.b  && this.a === color.a
+    }
+    getPos(){
+        return [this.x,this.y]
+    }
+}
+const Black = new Color(0,0,0,255)
+
+
+function getImagePoints(){
+    const imgData = ctx.getImageData(0,0,canvas.width,canvas.height)
+    const data = imgData.data
+    let index = 0
+    let width = 0
+    let height = 0
+    const outerArray = []
+    let innterArray = []
+    while (index < (data.length )){
+        if(width == imgData.width){
+            outerArray.push(innterArray)
+            innterArray = []
+            width = 0
+            height++
+        }
+        const red = data[index]
+        const green = data[++index]
+        const blue = data[++index]
+        const alpha = data[++index]
+        innterArray.push(new Color(red,green,blue,alpha,width,height))
+        index++
+        width++
+    }
+    return outerArray
+}
+
+
+
+function findX(){
+    const Data = getImagePoints()
+    for(let i = 0; i < Data[0].length; i++){
+        for(let j = 0; j < Data.length; j++){
+            if(Data[j][i].isEqual(Black)){
+                return Data[j][i].getPos()[0]
+            }
+        }
+    }
+}
+
+function findY(){
+    const Data = getImagePoints()
+    for(let i = 0; i < Data.length; i++){
+        for(let j = 0; j < Data[0].length; j++){
+            if(Data[i][j].isEqual(Black)){
+                return Data[i][j].getPos()[1]
+            }
+        }
+    }
+}
+
+function findW(){
+    const Data = getImagePoints()
+    for(let i = Data[0].length - 1 ; i >= 0 ; i--){
+        for(let j = 0; j < Data.length; j++){
+            if(Data[j][i].isEqual(Black)){
+                return Data[j][i].getPos()[0]
+            }
+        }
+    }
+}
+
+
+function findH(){
+    const Data = getImagePoints()
+    for(let i = Data.length - 1 ; i >= 0; i--){
+        for(let j = 0; j < Data[0].length; j++){
+            if(Data[i][j].isEqual(Black)){
+                return Data[i][j].getPos()[1]
+            }
+        }
+    }
+}
+
+
+function DrawRect(x,y,w,h){
+    ctx.beginPath()
+    ctx.lineWidth = 1
+    ctx.strokeRect(x,y,w,h)
+    ctx.stroke()
+}
+
+
+
+function makeCanvas(){
+    let x = findX()
+    // if x = undefined that means the screen is blank and there is no drawing
+    if(x == undefined) return "white"
+    let y = findY()
+    let width = findW() - findX()
+    let height = findH() - findY()
+
+    let max = height > width ? height : width
+
+    const canv = document.createElement("canvas")
+    const context = canv.getContext("2d")
+    canv.width = max
+    canv.height = max
+    // make the whole new canvas white 
+    DrawRect(context,0,0,canv.width,canv.height)
+    const imgData_ = ctx.getImageData(x,y,width,height)
+    const X = (max/2) - (width/2)
+    const Y = (max/2) - (height/2)
+    context.putImageData(imgData_,X,Y)
+    let dataURL = canv.toDataURL("image/png");
+    return dataURL
+}
+
+
+
+
+// ============= END Image Processing ============
+
+
+
+
+
+
+
+
 
 const tools = document.querySelectorAll(".tool:not([data-one-click])")
 
@@ -92,12 +236,11 @@ document.querySelector("#ok-btn").addEventListener("click",()=>{
 function makeImage(){
     // make an image html tag from canvas
     // i dont need to convert the canvas to img tag i just need to use src which is the same as dataURL
-    let dataURL = canvas.toDataURL("image/png");
+    let dataURL = makeCanvas()
 
     // cheack if it is white image
-    if(dataURL == whiteCanvas){
+    if(dataURL == "white"){
         document.getElementById("result").innerText = "Please Draw something :')"
-        console.log("white")
         return
     }
         
@@ -175,7 +318,7 @@ canvas.addEventListener("mousemove",(event)=>{
 })
 canvas.addEventListener("mouseup",()=>{
     CanDraw = false
-    context.beginPath()
+    ctx.beginPath()
 })
 
 // touch events for phones
@@ -192,7 +335,7 @@ function HandleMove(event){
 
 function HandleEnd(){
     CanDraw = false
-    context.beginPath()
+    ctx.beginPath()
 }
 
 canvas.addEventListener("touchstart",HandleStart,false)
@@ -200,30 +343,30 @@ canvas.addEventListener("touchmove",HandleMove,false)
 canvas.addEventListener("touchend",HandleEnd,false)
 
 function DrawBackground() {
-    context.beginPath()
-    context.fillStyle = "white"
-    context.fillRect(0,0,canvas.width,canvas.height)
-    context.fill()
+    ctx.beginPath()
+    ctx.fillStyle = "white"
+    ctx.fillRect(0,0,canvas.width,canvas.height)
+    ctx.fill()
 }
 
 DrawBackground()
 
 const Draw = ()=>{
     if(CanDraw){
-        context.lineWidth = 20
-        context.lineCap = "round"
-        context.strokeStyle = penColor
-        context.lineTo(mousePosition.x,mousePosition.y)
-        context.stroke()
-        context.beginPath()
-        context.moveTo(mousePosition.x,mousePosition.y)
+        ctx.lineWidth = 25
+        ctx.lineCap = "round"
+        ctx.strokeStyle = penColor
+        ctx.lineTo(mousePosition.x,mousePosition.y)
+        ctx.stroke()
+        ctx.beginPath()
+        ctx.moveTo(mousePosition.x,mousePosition.y)
     }
     
 }
 
 function Start(){
     document.getElementById("result").innerText = ""
-    context.clearRect(0,0,canvas.width,canvas.height)
+    ctx.clearRect(0,0,canvas.width,canvas.height)
     DrawBackground()
 }
  

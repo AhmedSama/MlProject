@@ -16,11 +16,10 @@ def make_rgb_list_from_image(img_name):
     '''convert rgba value which is like => (number,number,number,number) into just => number
      and return all numbers as list'''
     im = Image.open(img_name)
-    im.thumbnail((21,21))
+    im.thumbnail((22,22))
     im.save(img_name)
     pixel_values = list(im.getdata())
     rgb_list_img = []
-
     # convert rgba value which is like => (number,number,number,number) into just => number
     for rgb in pixel_values:
         val = rgb if type(rgb) == int else rgb[0]
@@ -50,6 +49,8 @@ def detectTestImageWithDataImages(img,listOfImages):
     # return min(avg_)
 
 def StartDetect(testImage):
+    # make_rgb_list_from_image(join(absPath,'images/test/',testImage),join(absPath,'images/data/smile_images/',testImage))
+    # return
     test1 = make_rgb_list_from_image(join(absPath,'images/test/',testImage))
     if test1 == []:
         return "white"

@@ -25,19 +25,18 @@ def detect():
     data = request.get_json()["data"].split(";")[-1].split(",")[-1]
     data = data.encode()
     image_64_decode = base64.decodebytes(data)
-    name = 'rand'+str(randint(1000,100000))+".png"
+    name = 'Image'+str(randint(1000,100000))+".png"
     image_result = open(join(absPath,"images/test/",name), 'wb') 
     image_result.write(image_64_decode)
     image_result.close()
+
     if detectImage.StartDetect(name) == "happy":
-        print("happy")
         return jsonify({"face":"happy"})
+
     elif detectImage.StartDetect(name) == "sad":
-        
-        print("sad")
         return jsonify({"face":"sad"})
+
     elif detectImage.StartDetect(name) == "white":
-        print("white")
         return jsonify({"face":"white"})
 
 

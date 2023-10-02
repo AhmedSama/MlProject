@@ -151,21 +151,26 @@ const tools = document.querySelectorAll(".tool:not([data-one-click])")
 
 let penColor = "#000"
 
-tools.forEach(tool=>{
-    tool.addEventListener("click",()=>{
-        tools.forEach(selectedTool=>{
+tools.forEach(tool => {
+    tool.addEventListener("click", () => {
+        tools.forEach(selectedTool => {
             selectedTool.classList.remove("active")
         })
         tool.classList.add("active")
-        changeColor()
+
+        // Check the id attribute of the clicked tool
+        const toolId = tool.id;
+        changeColor(toolId);
     })
 })
 
-function changeColor(){
-    if(penColor === "#000")
-        penColor = "#fff"
-    else
-        penColor = "#000"
+function changeColor(toolId){
+    // Use a conditional statement to change the color based on the tool id
+    if (toolId === "pen") {
+        penColor = "#000"; // Change color to black
+    } else if (toolId === "eraser") {
+        penColor = "#fff"; // Change color to white
+    }
 }
 
 function cheackScreenWidth(){
